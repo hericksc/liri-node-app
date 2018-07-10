@@ -19,7 +19,7 @@ var pick = function (caseData, functionData) {
         case "my-tweets":
             console.log('gonna search my tweets');
             var params = { screen_name: 'CavsCWRU', count: 20 };
-            client.get('statuses/user_timeline', params, function (err, tweets, response) {
+            client.get('statuses/user_timeline', params, function (err, tweets) {
                 if (err) {
                     return console.log('Error occurred: ' + err);
                 }
@@ -61,7 +61,7 @@ var pick = function (caseData, functionData) {
                     return console.log(err);
                 }
                 // If the request is successful
-                if ( response.statusCode === 200) {
+                if (response.statusCode === 200) {
                     var movie = JSON.parse(body);
                     // Parse the body of the site and recover just the imdbRating
                     // (Note: The syntax below for parsing isn't obvious. Just spend a few moments dissecting it).
@@ -81,10 +81,10 @@ var pick = function (caseData, functionData) {
         case "do-what-it-says":
             console.log('gonna do what it says');
 
-            
+
             var fileText = fs.readFileSync("./random.txt", "UTF8");
             var fileData = fileText.split(",");
-            pick(fileData[0],fileData[1]);
+            pick(fileData[0], fileData[1]);
             break;
         default:
             console.log("LIRI doesn't know that");
